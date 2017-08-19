@@ -54,34 +54,31 @@ class ViewController: UIViewController {
             // parse the result
            
             do {
-                //let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
                 
                 guard let json = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers) as? NSDictionary else {
                     print("error trying to convert data to JSON")
                     return
                 }
                 
-                let records : NSArray = json.value(forKey: "records") as! NSArray
                 
-                dump(records)
-//                guard let recordsjson = json["records"] as? NSArray else
-//                {
-//                    print("Error: geen records aanwezig.")
-//                    return
-//                }
-//            
-//            
-//                let opmerkelijkeBomen = OpmerkelijkeBomenMO(context: context)
-//                
-//                var records = NSSet()
-//                for recordjson in recordsjson
-//                {
-//                    let record = RecordMO(context: context)
-//                    record.datasetid = recordjson["datasetid"]
-//                    
-//                }
-//                
+                
             
+                
+            
+                let opmerkelijkeBomen = OpmerkelijkeBomen(context: context)
+                
+                opmerkelijkeBomen.nhits = json.value(forKey: "nhits") as! int_fast16_t
+                
+                let records = json.value(forKey: "records") as! [[String : Any]]
+            
+                let record = NSArray()
+                
+                for recordjson in records{
+                    let fields = recordjson["fields"] as! [[String: Any]]
+                    
+                    
+                }
                 
             } catch  {
                 print("error trying to convert data to JSON")

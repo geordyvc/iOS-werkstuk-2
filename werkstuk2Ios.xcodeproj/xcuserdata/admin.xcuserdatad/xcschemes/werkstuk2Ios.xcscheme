@@ -5,6 +5,22 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "849FF77E1EE5C0B500D2D9F0"
+               BuildableName = "werkstuk2Ios.app"
+               BlueprintName = "werkstuk2Ios"
+               ReferencedContainer = "container:werkstuk2Ios.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
@@ -12,7 +28,36 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "849FF7951EE5C0B500D2D9F0"
+               BuildableName = "werkstuk2IosTests.xctest"
+               BlueprintName = "werkstuk2IosTests"
+               ReferencedContainer = "container:werkstuk2Ios.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "849FF7A01EE5C0B500D2D9F0"
+               BuildableName = "werkstuk2IosUITests.xctest"
+               BlueprintName = "werkstuk2IosUITests"
+               ReferencedContainer = "container:werkstuk2Ios.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "849FF77E1EE5C0B500D2D9F0"
+            BuildableName = "werkstuk2Ios.app"
+            BlueprintName = "werkstuk2Ios"
+            ReferencedContainer = "container:werkstuk2Ios.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -26,6 +71,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "849FF77E1EE5C0B500D2D9F0"
+            BuildableName = "werkstuk2Ios.app"
+            BlueprintName = "werkstuk2Ios"
+            ReferencedContainer = "container:werkstuk2Ios.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -35,6 +90,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "849FF77E1EE5C0B500D2D9F0"
+            BuildableName = "werkstuk2Ios.app"
+            BlueprintName = "werkstuk2Ios"
+            ReferencedContainer = "container:werkstuk2Ios.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

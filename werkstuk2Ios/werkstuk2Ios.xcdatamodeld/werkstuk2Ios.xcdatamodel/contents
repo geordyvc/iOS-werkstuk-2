@@ -1,4 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="15G31" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Field" representedClassName="Field" syncable="YES" codeGenerationType="class">
+        <attribute name="beplanting" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="diameter_van_de_kroon" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="gemeente" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="omtrek" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="positie" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="soort" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="straat" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="record" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Record" inverseName="fielden" inverseEntity="Record" syncable="YES"/>
+    </entity>
+    <entity name="OpmerkelijkeBomen" representedClassName="OpmerkelijkeBomen" syncable="YES" codeGenerationType="class">
+        <attribute name="nhits" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="parameters" maxCount="1" deletionRule="Nullify" destinationEntity="Parameter" inverseName="opmerkelijkebomen" inverseEntity="Parameter" syncable="YES"/>
+        <relationship name="records" toMany="YES" deletionRule="Nullify" destinationEntity="Record" inverseName="opmerkelijkebomen" inverseEntity="Record" syncable="YES"/>
+    </entity>
+    <entity name="Parameter" representedClassName="Parameter" syncable="YES" codeGenerationType="class">
+        <attribute name="dataset" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="format" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rows" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="timezone" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="opmerkelijkebomen" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OpmerkelijkeBomen" inverseName="parameters" inverseEntity="OpmerkelijkeBomen" syncable="YES"/>
+    </entity>
+    <entity name="Record" representedClassName="Record" syncable="YES" codeGenerationType="class">
+        <attribute name="datasetid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="record_timestamp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recordid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="fielden" maxCount="1" deletionRule="Nullify" destinationEntity="Field" inverseName="record" inverseEntity="Field" syncable="YES"/>
+        <relationship name="opmerkelijkebomen" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OpmerkelijkeBomen" inverseName="records" inverseEntity="OpmerkelijkeBomen" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Field" positionX="252" positionY="-72" width="128" height="193"/>
+        <element name="OpmerkelijkeBomen" positionX="-9" positionY="-205" width="128" height="88"/>
+        <element name="Parameter" positionX="-218" positionY="-216" width="128" height="118"/>
+        <element name="Record" positionX="-9" positionY="-19" width="128" height="118"/>
+    </elements>
 </model>

@@ -507,6 +507,7 @@
 				849FF7AC1EE5C0B500D2D9F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		849FF7AD1EE5C0B500D2D9F0 /* Build configuration list for PBXNativeTarget "werkstuk2IosTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +516,7 @@
 				849FF7AF1EE5C0B500D2D9F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		849FF7B01EE5C0B500D2D9F0 /* Build configuration list for PBXNativeTarget "werkstuk2IosUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +525,7 @@
 				849FF7B21EE5C0B500D2D9F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

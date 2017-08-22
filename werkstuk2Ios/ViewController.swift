@@ -8,12 +8,17 @@
 
 import UIKit
 import CoreData
+import MapKit
+import CoreLocation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, MKMapViewDelegate {
 
+    @IBOutlet weak var mapView: MKMapView!
+    var locationManager = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
         self.makeGetCall()
         
     }
@@ -21,6 +26,14 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        
+        let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        
+        mapView.setRegion(region, animated: true)
     }
 
     func makeGetCall() {
@@ -146,10 +159,26 @@ class ViewController: UIViewController {
         task.resume()
     }
     
-    func toevoegenBoom(Boom: String)
-    {
+    func map() {
+        let location = "some address, state, and zip"
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(location) { [weak self] placemarks, error in
+            if let placemark = placemarks?.first, let location = placemark.location {
+                let mark = MKPlacemark(placemark: placemark)
+                
+                if var region = self?.mapView.region {
+                    region.center = location.coordinate
+                    region.span.longitudeDelta /= 8.0
+                    region.span.latitudeDelta /= 8.0
+                    self?.mapView.setRegion(region, animated: true)
+                    self?.mapView.addAnnotation(mark)
+                }
+            }
+        }
+        
         
     }
+   
     
     
 

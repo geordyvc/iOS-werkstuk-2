@@ -12,7 +12,7 @@ import MapKit
 import CoreLocation
 
 class ViewController: UIViewController, MKMapViewDelegate {
-
+    
     @IBOutlet weak var mapView: MKMapView!
     var locationManager = CLLocationManager()
     override func viewDidLoad() {
@@ -20,6 +20,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         self.makeGetCall()
+        self.addToMap()
         
     }
 
@@ -38,7 +39,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
 
     func makeGetCall() {
         
-        let url = URL(string: "https://opendata.brussel.be/api/records/1.0/search/?dataset=opmerkelijke-bomen")
+        let url = URL(string: "https://opendata.brussel.be/api/records/1.0/search/?dataset=opmerkelijke-bomen&rows=15")
         
         let urlRequest = URLRequest(url: url!)
         
@@ -117,15 +118,63 @@ class ViewController: UIViewController, MKMapViewDelegate {
                     
                     let field = NSEntityDescription.insertNewObject(forEntityName: "Field", into: context) as! Field
                     
-                    field.status = fieldsjson["status"] as? String
-                    field.omtrek = fieldsjson["omtrek"] as! Int16
-                    field.straat = fieldsjson["straat"] as? String
-                    field.beplanting = fieldsjson["beplanting"] as? String
-                    field.diameter_van_de_kroon = fieldsjson["diameter_van_de_kroon"] as! Int16
-                    field.soort = fieldsjson["soort"] as? String
-                    field.positie = fieldsjson["positie"] as? String
-                    field.id = fieldsjson["id"] as! Int16
-                    field.gemeente = fieldsjson["gemeente"] as? String
+                    if fieldsjson["status"] != nil
+                    {
+                        field.status = fieldsjson["status"] as? String
+                    }
+                   
+                    if fieldsjson["omtrek"] != nil
+                    {
+                        field.omtrek = fieldsjson["omtrek"] as! Int16
+                    }
+                    
+                    
+                    if fieldsjson["straat"] != nil
+                    {
+                        field.straat = fieldsjson["straat"] as? String
+                    }
+                    
+                    if fieldsjson["beplanting"] != nil
+                    {
+                        field.beplanting = fieldsjson["beplanting"] as? String
+                    }
+                    
+                    
+                    if fieldsjson["diameter_van_de_kroon"] != nil
+                    {
+                        field.diameter_van_de_kroon = fieldsjson["diameter_van_de_kroon"] as! Int16
+                    }
+                    
+                    
+                    if fieldsjson["soort"] != nil
+                    {
+                        field.soort = fieldsjson["soort"] as? String
+                    }
+                    
+                    
+                    if fieldsjson["positie"] != nil
+                    {
+                        field.positie = fieldsjson["positie"] as? String
+                    }
+                    
+                    if fieldsjson["id"] != nil
+                    {
+                        field.id = fieldsjson["id"] as! Int16
+                    }
+                    
+                    
+                    if fieldsjson["gemeente"] != nil
+                    {
+                        field.gemeente = fieldsjson["gemeente"] as? String
+                    }
+                    
+                   
+                    if fieldsjson["landschap"] != nil
+                    {
+                        field.landschap = fieldsjson["landschap"] as? String
+                    }
+                    
+                
                     
                     record.fielden = field
                     
@@ -145,10 +194,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
 
             
            
-            //catch  {
-               // print("error trying to convert data to JSON")
-               // return
-           // }
+            
             
             
             
@@ -159,22 +205,47 @@ class ViewController: UIViewController, MKMapViewDelegate {
         task.resume()
     }
     
-    func map() {
-        let location = "some address, state, and zip"
-        let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(location) { [weak self] placemarks, error in
-            if let placemark = placemarks?.first, let location = placemark.location {
+    func addToMap() {
+        do
+        {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        var recordsOpmerkelijkeBomen = [Record]()
+        
+        let recordFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Record")
+        recordsOpmerkelijkeBomen = try context.fetch(recordFetch) as! [Record]
+        
+        for record in recordsOpmerkelijkeBomen
+        {
+            let field = record.fielden
+            let location = "\(field?.straat), \(field?.gemeente), Belgie"
+            let geocoder = CLGeocoder()
+            geocoder.geocodeAddressString(location)
+            { [weak self] placemarks, error in
+            if let placemark = placemarks?.first, let location = placemark.location
+            {
+                
+                
                 let mark = MKPlacemark(placemark: placemark)
+                //mark.title = field?.soort
                 
                 if var region = self?.mapView.region {
                     region.center = location.coordinate
                     region.span.longitudeDelta /= 8.0
                     region.span.latitudeDelta /= 8.0
-                    self?.mapView.setRegion(region, animated: true)
+                    //self?.mapView.setRegion(region, animated: true)
                     self?.mapView.addAnnotation(mark)
                 }
             }
+
+            
         }
+        
+                } 
+        } catch let error as NSError
+        {
+            print("could not fetch \(error)")
+        }
+        
         
         
     }

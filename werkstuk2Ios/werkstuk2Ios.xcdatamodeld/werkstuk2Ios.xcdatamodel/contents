@@ -5,6 +5,7 @@
         <attribute name="diameter_van_de_kroon" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="gemeente" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="landschap" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="omtrek" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="positie" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="soort" optional="YES" attributeType="String" syncable="YES"/>
@@ -32,7 +33,7 @@
         <relationship name="opmerkelijkebomen" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OpmerkelijkeBomen" inverseName="records" inverseEntity="OpmerkelijkeBomen" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Field" positionX="252" positionY="-72" width="128" height="193"/>
+        <element name="Field" positionX="252" positionY="-72" width="128" height="30"/>
         <element name="OpmerkelijkeBomen" positionX="-9" positionY="-205" width="128" height="88"/>
         <element name="Parameter" positionX="-218" positionY="-216" width="128" height="118"/>
         <element name="Record" positionX="-9" positionY="-19" width="128" height="118"/>
